@@ -13,7 +13,13 @@
       (is (= r ast)))))
 
 (deftest catch-all-rule
-         (asciidoc-rule :Document "hello shit\nthis is an amazing day\n"))
+         (asciidoc-rule :Document "ab\nc d\n" {:Document '({:Paragraph
+                                                            {:Text '({:Char \a}
+                                                                     {:Char \b})}}
+                                                           {:Paragraph
+                                                            {:Text '({:Char \c}
+                                                                     {:Whitespace \space}
+                                                                     {:Char \d})}})}))
 
 (deftest end-of-line
          (asciidoc-rule :EOL "\n"))
