@@ -9,9 +9,9 @@
 (def letters (apply str (all-letters "utf-8")))
 
 (def grammar {
-	:Document '(* :Paragraph)
-	:Paragraph '(* (| :Text :EOL))
-	:Text '(* (| :Char :Whitespace))
+	:Document '(* [:Paragraph :EOL])
+	:Paragraph '(* :Text)
+	:Text '(*  (| :Char :Whitespace))
 	:EOL '(| \newline \return)
 	:Whitespace '(| \space \tab)
 	:Char (lpegs '| letters)

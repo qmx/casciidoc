@@ -13,19 +13,13 @@
       (is (= r ast)))))
 
 (deftest catch-all-rule
-         (asciidoc-rule :Document "ab\nc d\n" {:Document '({:Paragraph
-                                                            {:Text '({:Char \a}
-                                                                     {:Char \b})}}
-                                                           {:Paragraph
-                                                            {:Text '({:Char \c}
-                                                                     {:Whitespace \space}
-                                                                     {:Char \d})}})}))
+         (asciidoc-rule :Document "ab\nc d\n" {:Document '([{:Paragraph {:Text ({:Char \a} {:Char \b})}} {:EOL \newline}] [{:Paragraph {:Text ({:Char \c} {:Whitespace \space} {:Char \d})}} {:EOL \newline}])}))
 
 (deftest end-of-line
-         (asciidoc-rule :EOL "\n"))
+         (asciidoc-rule :EOL "\n" {:EOL \newline}))
 
 (deftest any-text
-         (asciidoc-rule :Text "hello shit"))
+         (asciidoc-rule :Text "hello shit" {:Text '({:Char \h} {:Char \e} {:Char \l} {:Char \l} {:Char \o} {:Whitespace \space} {:Char \s} {:Char \h} {:Char \i} {:Char \t})}))
 
 (deftest paragraph
          (asciidoc-rule :Paragraph "hello shit\n")
