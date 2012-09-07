@@ -1,7 +1,12 @@
 (ns casciidoc.core
 	(:use [com.lithinos.amotoen.core :only [pegs lpegs post-process wrap-string pegasus]]))
 
-(def letters "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz")
+(defn all-letters [charset-name]
+  (let [ce (-> charset-name java.nio.charset.Charset/forName .newEncoder)]
+    (->> (range 0 (int Character/MAX_VALUE)) (map char)
+         (filter #(and (.canEncode ce %) (Character/isLetter %))))))
+
+(def letters (apply str (all-letters "utf-8")))
 
 (def grammar {
 	:Document '(* :Paragraph)
