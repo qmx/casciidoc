@@ -1,4 +1,5 @@
 # casciidoc
+[![Build Status](https://secure.travis-ci.org/qmx/casciidoc.png)](http://travis-ci.org/qmx/casciidoc)
 
 PEG parser for asciidoc markup language
 
